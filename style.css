@@ -1,1 +1,74 @@
-/* Add styles here */
+
+:root {
+    --primary-color: #f0f0f0;
+    --secondary-color: #333;
+    --accent-color: #ff7f50;
+    --background-color: #fdfdfd;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+#generate-btn {
+    background: linear-gradient(45deg, var(--accent-color), #f9d423);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#numbers-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+lotto-ball {
+    --ball-color: #eee; /* Default color */
+}
+
+lotto-ball .ball {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    background: radial-gradient(circle at 20px 20px, var(--ball-color), #fff);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease-in-out;
+}
