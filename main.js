@@ -26,6 +26,9 @@ class LottoBall extends HTMLElement {
           box-shadow: 0 5px 10px rgba(0,0,0,0.15);
           transition: transform 0.3s ease-in-out;
         }
+        .ball:hover {
+          transform: scale(1.1);
+        }
       </style>
       <div class="ball">${number}</div>
     `;
@@ -42,6 +45,7 @@ class LottoBall extends HTMLElement {
 
 customElements.define('lotto-ball', LottoBall);
 
+// Lotto Generation Logic
 document.getElementById('generate-btn').addEventListener('click', () => {
     const numbersContainer = document.getElementById('numbers-container');
     numbersContainer.innerHTML = '';
@@ -50,9 +54,36 @@ document.getElementById('generate-btn').addEventListener('click', () => {
         numbers.add(Math.floor(Math.random() * 45) + 1);
     }
     
-    for (const number of [...numbers].sort((a,b) => a-b)) {
-        const ball = document.createElement('lotto-ball');
-        ball.setAttribute('number', number);
-        numbersContainer.appendChild(ball);
+    const sortedNumbers = [...numbers].sort((a,b) => a-b);
+    sortedNumbers.forEach((number, index) => {
+        setTimeout(() => {
+            const ball = document.createElement('lotto-ball');
+            ball.setAttribute('number', number);
+            numbersContainer.appendChild(ball);
+        }, index * 100);
+    });
+});
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        themeToggle.textContent = '☀️';
+    }
+}
+
+themeToggle.addEventListener('click', () => {
+    let theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
     }
 });

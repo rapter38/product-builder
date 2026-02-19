@@ -1,9 +1,21 @@
-
 :root {
     --primary-color: #f0f0f0;
     --secondary-color: #333;
     --accent-color: #ff7f50;
     --background-color: #fdfdfd;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --primary-color: #222;
+    --secondary-color: #eee;
+    --accent-color: #ff7f50;
+    --background-color: #121212;
+    --container-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -14,19 +26,45 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .container {
+    position: relative;
     text-align: center;
-    padding: 2rem;
-    background-color: white;
+    padding: 2.5rem;
+    background-color: var(--container-bg);
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    min-width: 320px;
+}
+
+.theme-switch-wrapper {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    line-height: 1;
+}
+
+#theme-toggle:hover {
+    background-color: var(--primary-color);
 }
 
 h1 {
-    color: var(--secondary-color);
+    color: var(--text-color);
     margin-bottom: 2rem;
 }
 
@@ -40,6 +78,7 @@ h1 {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 #generate-btn:hover {
@@ -52,23 +91,9 @@ h1 {
     justify-content: center;
     gap: 1rem;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 lotto-ball {
-    --ball-color: #eee; /* Default color */
-}
-
-lotto-ball .ball {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--secondary-color);
-    background: radial-gradient(circle at 20px 20px, var(--ball-color), #fff);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease-in-out;
+    --ball-color: #eee;
 }
